@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"><head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Pusula</title>
+</head>
+<body>
+
+<table>
+    <tr th:each="tempArticle : ${article}">
+    <td th:text="${tempArticle.title}"/>
+    <td th:text="${tempArticle.body}"/>
+        <td th:text="${tempArticle.published_at}"/>
+    </tr>
+</table>
+
+
+
+</body>
+</html>
