@@ -1,6 +1,7 @@
 package com.example.pusula.Service;
 
 import com.example.pusula.DTO.ArticleDTO;
+import com.example.pusula.DTO.CategoryDTO;
 import com.example.pusula.Entity.Article;
 import com.example.pusula.Entity.Category;
 import com.example.pusula.Repository.ArticleDAO;
@@ -36,7 +37,10 @@ public class ArticleServiceImpl implements ArticleService{
         dto.setTitle(article.getTitle());
         dto.setBody(article.getBody());
         dto.setImage_url(article.getImageUrl());
-        // Assuming you have a getCategory() method in your Article class
+        dto.setPublishDate(article.getPublishedAt());
+        CategoryDTO categoryDTO = new CategoryDTO();
+        categoryDTO.setName(article.getCategory().getName());
+        dto.setCategory(categoryDTO.getName());
         return dto;
     }
 
@@ -63,6 +67,7 @@ public class ArticleServiceImpl implements ArticleService{
         dto.setTitle(article.getTitle());
         dto.setBody(article.getBody());
         dto.setImage_url(article.getImageUrl());
+        dto.setCategory(article.getCategory().getName());
         return dto;
     }
 
@@ -75,6 +80,39 @@ public class ArticleServiceImpl implements ArticleService{
         dto.setImage_url(article.getImageUrl());
         return dto;
     }
+
+    @Override
+    public List<ArticleDTO> getSports() {
+        List<Article> articles = articleDAO.getSports();
+        return articles.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ArticleDTO> getPolitics() {
+        List<Article> articles = articleDAO.getPolitics();
+        return articles.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ArticleDTO> getHealth() {
+        List<Article> articles = articleDAO.getHealth();
+        return articles.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ArticleDTO> getTechnology() {
+        List<Article> articles = articleDAO.getTechnology();
+        return articles.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
 
     @Override
     public void insertArticle(ArticleDTO articleDTO) {

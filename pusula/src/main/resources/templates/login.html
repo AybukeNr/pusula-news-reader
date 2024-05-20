@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
  <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,11 +19,11 @@
 
       <div class="card card-outline card-primary">
        <div class="card-header text-center">
-        <a href="index.html" class="h1"><b>Pusula</b></a>
+        <a th:href="@{/news}" class="h1"><b>Pusula</b></a>
        </div>
        <div class="card-body">
         <p class="login-box-msg">Giriş yapmak için bilgilerinizi giriniz.</p>
-        <form action="../../index3.html" method="post">
+        <form th:action="@{/auth}" method="post">
          <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="username">
            <div class="input-group-append">
@@ -40,6 +40,11 @@
             </div>
            </div>
          </div>
+         <div th:if="${param.error}">
+          <div class="alert alert-danger col-xs-offset-1 col-xs-10">
+           Invalid username and password.
+          </div>
+         </div>
          <div class="row">
           
 
@@ -51,7 +56,7 @@
         </form>
         
         <p class="mb-0">
-         <a href="register.html" class="text-center">Henüz üye değil misin?</a>
+         <a th:href="@{/register}" class="text-center">Henüz üye değil misin?</a>
         </p>
        </div>
 

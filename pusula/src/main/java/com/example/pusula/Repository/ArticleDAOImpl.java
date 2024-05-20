@@ -32,28 +32,28 @@ public class ArticleDAOImpl implements ArticleDAO{
 
     @Override
     public List<Article> getSports() {//2
-        TypedQuery<Article> query = em.createQuery("SELECT a FROM Article a WHERE a.category.id = :categoryId", Article.class);
+        TypedQuery<Article> query = em.createQuery("SELECT a FROM Article a WHERE a.category.id = :categoryId AND isPrivate=false", Article.class);
         query.setParameter("categoryId", 2);
         return query.getResultList();
     }
 
     @Override
     public List<Article> getPolitics() {//1
-        TypedQuery<Article> query = em.createQuery("SELECT a FROM Article a WHERE a.category.id = :categoryId", Article.class);
+        TypedQuery<Article> query = em.createQuery("SELECT a FROM Article a WHERE a.category.id = :categoryId AND isPrivate=false", Article.class);
         query.setParameter("categoryId", 1);
         return query.getResultList();
     }
 
     @Override
     public List<Article> getHealth() {//4
-        TypedQuery<Article> query = em.createQuery("SELECT a FROM Article a WHERE a.category.id = :categoryId", Article.class);
+        TypedQuery<Article> query = em.createQuery("SELECT a FROM Article a WHERE a.category.id = :categoryId AND isPrivate=false", Article.class);
         query.setParameter("categoryId", 1);
         return query.getResultList();
     }
 
     @Override
     public List<Article> getTechnology() {//3
-        TypedQuery<Article> query = em.createQuery("SELECT a FROM Article a WHERE a.category.id = :categoryId", Article.class);
+        TypedQuery<Article> query = em.createQuery("SELECT a FROM Article a WHERE a.category.id = :categoryId AND isPrivate=false", Article.class);
         query.setParameter("categoryId", 3);
         return query.getResultList();
     }

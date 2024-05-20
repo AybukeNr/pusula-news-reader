@@ -7,11 +7,15 @@ import com.example.pusula.Entity.Role;
 import com.example.pusula.Repository.CommentDAO;
 import com.example.pusula.Repository.RoleDAO;
 import com.example.pusula.Repository.UserDAO;
-import com.example.pusula.Repository.UserDAOImpl;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.NoSuchElementException;
 
 @Service
@@ -36,6 +40,12 @@ public class UserServiceImpl implements UserService{
         userDTO.setUsername(user.getUsername());
         userDTO.setPassword(user.getPassword());
         return userDTO;
+    }
+
+    @Override
+    public User findByUsername(String username) {
+
+        return userDAO.findByUsername(username);
     }
 
     @Override
@@ -68,4 +78,28 @@ public class UserServiceImpl implements UserService{
         Role role = roleDAO.findById(2);
         user.setRole(role);
     }
+    @Override
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        User user = userDAO.findByUsername(userName);
+
+        if (user == null) {
+            throw new UsernameNotFoundException("Invalid username or password.");
+        }
+
+        Collection<SimpleGrantedAuthority> authorities = mapRolesToAuthorities((Collection<Role>) user.getRole());
+
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
+                authorities);
+    }
+    private Collection<SimpleGrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
+        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+
+        for (Role tempRole : roles) {
+            SimpleGrantedAuthority tempAuthority = new SimpleGrantedAuthority(tempRole.getName());
+            authorities.add(tempAuthority);
+        }
+
+        return authorities;
+    }
+
 }

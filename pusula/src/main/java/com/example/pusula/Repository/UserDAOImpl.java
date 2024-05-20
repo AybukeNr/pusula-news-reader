@@ -27,6 +27,20 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    public User findByUsername(String username) {
+        TypedQuery<User> query = entityManager.createQuery("SELECT u FROM User u WHERE u.username = :username", User.class);
+        query.setParameter("username", username);
+        User theUser = null;
+        try {
+            theUser = query.getSingleResult();
+        } catch (Exception e) {
+            theUser = null;
+        }
+
+        return theUser;
+    }
+
+    @Override
     @Transactional
     public void setRole(User user) {
         entityManager.persist(user);

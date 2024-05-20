@@ -11,6 +11,10 @@ public interface ArticleService {
     List<ArticleDTO> getAllArticlesPrivate();
     ArticleDTO getPublicArticleById(int id);
     ArticleDTO getPrivateArticleById(int id);
+    List<ArticleDTO> getSports();
+    List<ArticleDTO> getPolitics();
+    List<ArticleDTO> getHealth();
+    List<ArticleDTO> getTechnology();
     void insertArticle(ArticleDTO article);
     void deleteArticle(int id);
     void updateArticle(int id, ArticleDTO articleDTO);

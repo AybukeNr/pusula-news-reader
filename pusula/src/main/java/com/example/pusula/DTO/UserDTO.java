@@ -18,8 +18,8 @@ public class UserDTO {
     private String username;
 
     @NotNull
-    @Size(min = 8,max = 20,message = "is required")
-    @Pattern(regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,20}$", message = "Password must be 8-20 characters long, include at least one uppercase letter, one lowercase letter, one digit, and one special character")
+    @Size(min = 5,max = 20,message = "is required")
+    @Pattern(regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{5,20}$", message = "Password must be 5-20 characters long, include at least one uppercase letter, one lowercase letter, one digit, and one special character")
     private String password;
 
     @NotNull
