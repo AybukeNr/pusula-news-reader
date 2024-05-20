@@ -16,7 +16,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -43,7 +45,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User findByUsername(String username) {
+    public User findByUsername(String username)  {
 
         return userDAO.findByUsername(username);
     }
@@ -78,28 +80,9 @@ public class UserServiceImpl implements UserService{
         Role role = roleDAO.findById(2);
         user.setRole(role);
     }
-    @Override
-    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        User user = userDAO.findByUsername(userName);
 
-        if (user == null) {
-            throw new UsernameNotFoundException("Invalid username or password.");
-        }
-
-        Collection<SimpleGrantedAuthority> authorities = mapRolesToAuthorities((Collection<Role>) user.getRole());
-
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
-                authorities);
-    }
-    private Collection<SimpleGrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
-        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-
-        for (Role tempRole : roles) {
-            SimpleGrantedAuthority tempAuthority = new SimpleGrantedAuthority(tempRole.getName());
-            authorities.add(tempAuthority);
-        }
-
-        return authorities;
-    }
 
 }
+
+
+
