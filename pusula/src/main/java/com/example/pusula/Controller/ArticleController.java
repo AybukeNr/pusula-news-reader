@@ -54,6 +54,12 @@ public class ArticleController {
         theModel.addAttribute("articles", articles);
         return  "sport";
     }
+    @GetMapping("/authors")
+    public String getAuthors(Model theModel){
+        List<ArticleDTO> articleDTOS = articleService.getAllArticlesPrivate();
+        theModel.addAttribute("articleDTOS", articleDTOS);
+        return  "author";
+    }
 
 
 

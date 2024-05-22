@@ -14,18 +14,20 @@ import java.time.LocalDateTime;
 @Data
 public class ArticleDTO {
 
-    @NotNull
+    private int id;
+
     @Size(min = 1, max = 50,message = "is required")
     private String title;
-    @NotNull
+
     @Size(min = 1, max = 255,message = "is required")
     private String body;
 
-    @NotNull
+
     private LocalDateTime publishDate;
     @Size(min = 1)
     private String image_url;
     private String category;
+    private boolean ozel;
 
 
 

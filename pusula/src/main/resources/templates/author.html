@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -33,10 +33,10 @@
         <li class="nav-item"><a class="nav-link" href="/health.html">Sağlık</a></li>
         <li class="nav-item"><a class="nav-link" href="/breakingnews.html">Son Dakika</a></li>
          <li class="nav-item">
-          <a class="nav-link" href="/author.html">Yazarlarımızdan</a>
+          <a class="nav-link" href="#">Yazarlarımızdan</a>
          </li>
-        <li class="nav-item"><a class="nav-link" href="/login.html">Oturum Aç</a></li>
-        <li class="nav-item"><a class="nav-link" href="/register.html">Üye Ol</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{login}">Oturum Aç</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{register}>Üye Ol</a></li>
                 </ul>
 
 

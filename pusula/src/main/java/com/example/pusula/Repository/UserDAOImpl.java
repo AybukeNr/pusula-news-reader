@@ -8,6 +8,9 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.lang.reflect.Type;
+import java.util.List;
+
 
 @Repository
 public class UserDAOImpl implements UserDAO {
@@ -38,6 +41,14 @@ public class UserDAOImpl implements UserDAO {
         }
 
         return theUser;
+    }
+
+    @Override
+    public List<User> findYoneticiler() {
+        TypedQuery<User> query = entityManager.createQuery(
+                "SELECT u FROM User u JOIN u.role r WHERE r.id = :roleName", User.class);
+        query.setParameter("roleName", "ROLE_MODERATOR");
+        return query.getResultList();
     }
 
     @Override

@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CategoryDTO {
 
+    private int id;
     private String name;
     private User admin;
     private User mod;

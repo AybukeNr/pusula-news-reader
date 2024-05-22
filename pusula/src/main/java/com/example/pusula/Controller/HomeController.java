@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/rest")
 public class HomeController {
 
     private ArticleService articleService;
@@ -55,11 +55,11 @@ public class HomeController {
         return articleService.getPrivateArticleById(id);
     }
 
-    @PostMapping("/createArticle")
-    public ResponseEntity<ArticleDTO> createArticle(@RequestBody ArticleDTO articleDTO) {
-        articleService.insertArticle(articleDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(articleDTO);
-    }
+//    @PostMapping("/createArticle")
+//    public ResponseEntity<ArticleDTO> createArticle(@RequestBody ArticleDTO articleDTO) {
+//        articleService.insertArticle(articleDTO);
+//        return ResponseEntity.status(HttpStatus.CREATED).body(articleDTO);
+//    }
     @PostMapping("/updateArticle/{id}")
     public ResponseEntity<ArticleDTO> updateArticle(@PathVariable int id, @Valid @RequestBody ArticleDTO articleDTO) {
         articleService.updateArticle(id, articleDTO);

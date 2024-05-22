@@ -5,6 +5,7 @@ import com.example.pusula.Entity.Article;
 import java.util.List;
 
 public interface ArticleDAO {
+    List<Article> getAllArticles();
     List<Article> getAllArticlesPublic();
     Article findById(int id);
     List<Article> getSports();

@@ -1,5 +1,6 @@
 package com.example.pusula.Repository;
 
+import com.example.pusula.Entity.Category;
 import com.example.pusula.Entity.Comment;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
@@ -30,6 +31,11 @@ public class CommentDAOImpl implements CommentDAO {
             throw new NoSuchElementException("Comment not found");
         }
         return comment;
+    }
+
+    @Override
+    public List<Comment> findByArticleCategory(Category category) {
+        return List.of();
     }
 
 

@@ -24,6 +24,12 @@ public class ArticleDAOImpl implements ArticleDAO{
     }
 
     @Override
+    public List<Article> getAllArticles() {
+        TypedQuery<Article> query = em.createQuery("select a from Article a", Article.class);
+        return query.getResultList();
+    }
+
+    @Override
     public List<Article> getAllArticlesPublic() {
         TypedQuery<Article> query = em.createQuery("SELECT a FROM Article a where isPrivate=false" , Article.class);
         List<Article> articles = query.getResultList();

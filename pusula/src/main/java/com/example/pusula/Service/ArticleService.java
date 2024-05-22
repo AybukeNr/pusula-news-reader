@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface ArticleService {
     ArticleDTO convertToDTO(Article article);
+    List<ArticleDTO> getAllArticles();
     List<ArticleDTO> getAllArticlesPublic();
     List<ArticleDTO> getAllArticlesPrivate();
     ArticleDTO getPublicArticleById(int id);
@@ -15,8 +16,8 @@ public interface ArticleService {
     List<ArticleDTO> getPolitics();
     List<ArticleDTO> getHealth();
     List<ArticleDTO> getTechnology();
-    void insertArticle(ArticleDTO article);
-    void deleteArticle(int id);
+    void insertArticle(ArticleDTO article,int categoryID);
+    void deleteArticle(ArticleDTO articleDTO);
     void updateArticle(int id, ArticleDTO articleDTO);
 
 }

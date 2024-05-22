@@ -34,6 +34,7 @@ public class ArticleServiceImpl implements ArticleService{
     @Override
     public ArticleDTO convertToDTO(Article article) {
         ArticleDTO dto = new ArticleDTO();
+        dto.setId(article.getId());
         dto.setTitle(article.getTitle());
         dto.setBody(article.getBody());
         dto.setImage_url(article.getImageUrl());
@@ -42,6 +43,14 @@ public class ArticleServiceImpl implements ArticleService{
         categoryDTO.setName(article.getCategory().getName());
         dto.setCategory(categoryDTO.getName());
         return dto;
+    }
+
+    @Override
+    public List<ArticleDTO> getAllArticles() {
+        List<Article> articles = articleDAO.getAllArticles();
+        return articles.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -115,22 +124,25 @@ public class ArticleServiceImpl implements ArticleService{
 
 
     @Override
-    public void insertArticle(ArticleDTO articleDTO) {
+    public void insertArticle(ArticleDTO articleDTO,int categoryID) {
         Article article = new Article();
-        Category category = categoryDAO.findById(3);
+        Category category = categoryDAO.findById(categoryID);
         article.setCategory(category);
         article.setBody(articleDTO.getBody());
         article.setTitle(articleDTO.getTitle());
         article.setImageUrl(articleDTO.getImage_url());
         article.setPublishedAt(LocalDateTime.now());
-        article.setPrivate(false);
+        article.setPrivate(articleDTO.isOzel());
         articleDAO.insertArticle(article);
     }
 
 
 
     @Override
-    public void deleteArticle(int id) {
+    @Transactional
+    public void deleteArticle(ArticleDTO articleDTO) {
+        Article article=articleDAO.findById(articleDTO.getId());
+        articleDAO.deleteArticle(article.getId());
 
     }
 

@@ -14,10 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.NoSuchElementException;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -48,6 +45,11 @@ public class UserServiceImpl implements UserService{
     public User findByUsername(String username)  {
 
         return userDAO.findByUsername(username);
+    }
+
+    @Override
+    public List<User> findYoneticiler() {
+        return userDAO.findYoneticiler();
     }
 
     @Override

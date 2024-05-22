@@ -13,11 +13,11 @@
 <div class="login-box">
  <div class="card card-outline card-primary">
   <div class="card-header text-center">
-   <a th:href="@{/news}" class="h1"><b>Pusula</b></a>
+   <a th:href="@{news}" class="h1"><b>Pusula</b></a>
   </div>
   <div class="card-body">
    <p class="login-box-msg">Giriş yapmak için bilgilerinizi giriniz.</p>
-   <form th:action="@{/auth}" method="post">
+   <form th:action="@{auth}" method="post">
     <div class="input-group mb-3">
      <input type="text" class="form-control" placeholder="username" name="username">
      <div class="input-group-append">
@@ -46,7 +46,7 @@
     </div>
    </form>
    <p class="mb-0">
-    <a th:href="@{/register}" class="text-center">Henüz üye değil misin?</a>
+    <a th:href="@{register}" class="text-center">Henüz üye değil misin?</a>
    </p>
   </div>
  </div>
