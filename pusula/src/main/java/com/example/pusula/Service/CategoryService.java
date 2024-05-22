@@ -6,6 +6,6 @@ import com.example.pusula.Entity.User;
 
 public interface CategoryService {
     CategoryDTO findById(int id);
-    void createCategory(CategoryDTO category, int userID);
+    void createCategory(CategoryDTO category);
     void updateCategory(int id, CategoryDTO categoryDTO);
 }

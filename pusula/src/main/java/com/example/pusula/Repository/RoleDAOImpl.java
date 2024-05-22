@@ -3,12 +3,13 @@ package com.example.pusula.Repository;
 
 import com.example.pusula.Entity.Role;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import jakarta.persistence.TypedQuery;
+
 
 @Repository
-public class RoleDAOImpl implements RoleDAO{
+public class RoleDAOImpl implements RoleDAO {
 
     private EntityManager entityManager;
 

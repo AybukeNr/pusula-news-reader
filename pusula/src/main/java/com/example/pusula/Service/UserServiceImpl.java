@@ -9,9 +9,7 @@ import com.example.pusula.Repository.RoleDAO;
 import com.example.pusula.Repository.UserDAO;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -82,6 +80,7 @@ public class UserServiceImpl implements UserService{
         Role role = roleDAO.findById(2);
         user.setRole(role);
     }
+
 
 
 }

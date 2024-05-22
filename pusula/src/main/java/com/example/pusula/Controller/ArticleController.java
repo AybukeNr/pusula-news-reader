@@ -48,16 +48,57 @@ public class ArticleController {
         theModel.addAttribute("articles", articles);
         return  "index";
     }
+    @GetMapping("/{id}")
+    public String getArticle(Model theModel, @PathVariable("id") int id) {
+        // Retrieve article details based on the provided ID
+        ArticleDTO article = articleService.getPublicArticleById(id);
+
+        // Add the article object to the model
+        theModel.addAttribute("article", article);
+
+        // Return the view name
+        return "article";
+    }
+    @GetMapping("/private/{id}")
+    public String getPrivateArticle(Model theModel, @PathVariable("id") int id) {
+        // Retrieve article details based on the provided ID
+        ArticleDTO article = articleService.getPrivateArticleById(id);
+
+        // Add the article object to the model
+        theModel.addAttribute("article", article);
+
+        // Return the view name
+        return "articles";
+    }
+
     @GetMapping("/sport")
     public String getSports(Model theModel){
         List<ArticleDTO> articles = articleService.getSports();
         theModel.addAttribute("articles", articles);
         return  "sport";
     }
-    @GetMapping("/authors")
+    @GetMapping("/technology")
+    public String getTech(Model model){
+        List<ArticleDTO> articles = articleService.getTechnology();
+        model.addAttribute("articles", articles);
+        return  "technology";
+    }
+    @GetMapping("/politics")
+    public String getPolitics(Model theModel){
+        List<ArticleDTO> articles = articleService.getPolitics();
+        theModel.addAttribute("articles", articles);
+        return  "politics";
+    }
+    @GetMapping("/health")
+    public String getHeatlh(Model theModel){
+        List<ArticleDTO> articles = articleService.getHealth();
+        theModel.addAttribute("articles", articles);
+        return  "health";
+    }
+    @GetMapping("/author")
     public String getAuthors(Model theModel){
-        List<ArticleDTO> articleDTOS = articleService.getAllArticlesPrivate();
-        theModel.addAttribute("articleDTOS", articleDTOS);
+        List<ArticleDTO> articles = articleService.getAllArticlesPrivate();
+        theModel.addAttribute("articles", articles);
         return  "author";
     }
 

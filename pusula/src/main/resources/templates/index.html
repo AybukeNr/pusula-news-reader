@@ -19,29 +19,24 @@
        <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
          <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="index.html"><img src="icons/favicon-32x32.png" width="30" height="20" class="d-inline-block align-text-top"> PUSULA</a>
+          <a class="nav-link" aria-current="page" th:href="@{/index}"><img src="icons/favicon-32x32.png" width="30" height="20" class="d-inline-block align-text-top"> PUSULA</a>
          </li>
          <li class="nav-item">
-          <a class="nav-link" href="#">Politika</a>
+          <a class="nav-link" th:href="@{/politics}">Politika</a>
          </li>
          <li class="nav-item">
-          <a class="nav-link" href="#">Teknoloji</a>
+          <a class="nav-link" th:href="@{/technology}">Teknoloji</a>
          </li>         
          <li class="nav-item">
           <a class="nav-link" th:href="@{/sport}">Spor</a>
          </li>
          <li class="nav-item">
-          <a class="nav-link" href="#">Sağlık</a>
+          <a class="nav-link" th:href="@{/health}">Sağlık</a>
          </li>
          <li class="nav-item">
-          <a class="nav-link" href="/breakingnews.html">Son Dakika</a>
+          <a class="nav-link" th:href="@{author}">Yazarlarımızdan</a>
          </li>
-         <li class="nav-item" >
-          <a class="nav-link" th:href="@{/login}">Oturum Aç</a>
-         </li>
-         <li class="nav-item">
-          <a class="nav-link" th:href="@{/register}">Üye Ol</a>
-         </li>
+
         </ul>
 
 
@@ -109,7 +104,7 @@
      <div class="row">
 
       <div class="wrap" th:each="tempArticle : ${articles}">
-          <a href="/newsexample.html">
+          <a th:href="@{'/'+${tempArticle.id}}">
            <div class="article" th:style="'background-image: url(' + ${tempArticle.image_url} + ')'">
 
             <div class="overlay"></div>
@@ -117,7 +112,7 @@
              <span class="cat" th:attr="data-hover=${tempArticle.category}" th:text="${tempArticle.category}"></span>
             </div>
             <h1>
-                <span th:text="${tempArticle.title}"/>
+                <span th:href="@{'/'+${tempArticle.id}}" th:text="${tempArticle.title}"/>
             </h1>
         </div>
          </a>

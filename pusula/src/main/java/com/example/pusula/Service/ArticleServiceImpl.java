@@ -42,6 +42,7 @@ public class ArticleServiceImpl implements ArticleService{
         CategoryDTO categoryDTO = new CategoryDTO();
         categoryDTO.setName(article.getCategory().getName());
         dto.setCategory(categoryDTO.getName());
+        dto.setComments(article.getComments());
         return dto;
     }
 
@@ -73,6 +74,7 @@ public class ArticleServiceImpl implements ArticleService{
     public ArticleDTO getPublicArticleById(int id) {
         Article article = articleDAO.getPublicArticleById(id);
         ArticleDTO dto = new ArticleDTO();
+        dto.setId(article.getId());
         dto.setTitle(article.getTitle());
         dto.setBody(article.getBody());
         dto.setImage_url(article.getImageUrl());
@@ -88,6 +90,15 @@ public class ArticleServiceImpl implements ArticleService{
         dto.setBody(article.getBody());
         dto.setImage_url(article.getImageUrl());
         return dto;
+    }
+
+    @Override
+    public List<ArticleDTO> getArticleByCategory(CategoryDTO category) {
+        int id = category.getId();
+        List<Article> article = articleDAO.getArticleByCategoryID(id);
+        return article.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
     }
 
     @Override

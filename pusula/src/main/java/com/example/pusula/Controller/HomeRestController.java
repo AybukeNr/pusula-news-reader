@@ -95,11 +95,11 @@ public class HomeRestController {
         }
     }
 
-    @PostMapping("/createCategory")
-    public ResponseEntity<CategoryDTO> createCategory(@Valid @RequestBody CategoryDTO categoryDTO) {
-        categoryService.createCategory(categoryDTO, 11);
-        return ResponseEntity.status(HttpStatus.CREATED).body(categoryDTO);
-    }
+//    @PostMapping("/createCategory")
+//    public ResponseEntity<CategoryDTO> createCategory(@Valid @RequestBody CategoryDTO categoryDTO) {
+//        categoryService.createCategory(categoryDTO, 11);
+//        return ResponseEntity.status(HttpStatus.CREATED).body(categoryDTO);
+//    }
     @GetMapping("/getAllComments")
     public ResponseEntity<List<CommentDTO>> getAllComments() {
         List<CommentDTO> comments = commentService.findAll();

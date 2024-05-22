@@ -10,6 +10,7 @@ import com.example.pusula.Service.CategoryService;
 import com.example.pusula.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,12 +23,16 @@ public class AdminController {
     private ArticleService articleService;
     private CategoryService categoryService;
     private UserService userService;
+
     @Autowired
-    public AdminController(ArticleService articleService) {
+    public AdminController(ArticleService articleService, CategoryService categoryService, UserService userService) {
         this.articleService = articleService;
         this.categoryService = categoryService;
         this.userService = userService;
     }
+
+
+
     @GetMapping("/adminp")
     public String adminPanel(Model model) {
         return "admin";
@@ -54,26 +59,17 @@ public class AdminController {
     @GetMapping("/addnews")
     public String addNews(Model model) {
         model.addAttribute("article", new ArticleDTO());
+        model.addAttribute("categories", new CategoryDTO());
         return "/addnews";
     }
-    @GetMapping("/yoneticiler")
-    public String yoneticiler(Model model) {
-        List<User> mods = userService.findYoneticiler();
-        model.addAttribute("yonetici", mods);
-        return "/yoneticiler";
+    @GetMapping("/addcategory")
+    public String addCategory(Model model) {
+        model.addAttribute("category", new CategoryDTO());
+        return "addcategory";
     }
-    @GetMapping("/addyonetici")
-    public String addyonetici(Model model) {
-        return "addyonetici";
+    @PostMapping("/addCategory")
+    public String addCategory(@ModelAttribute CategoryDTO categoryDTO ) {
+        categoryService.createCategory(categoryDTO);
+        return "redirect:adminp";
     }
-    @GetMapping("/kullanicilar")
-    public String kullanicilar(Model model) {
-        return "kullanicilar";
-    }
-    @GetMapping("/comments")
-    public String comments(Model model) {
-        return "comments";
-    }
-
-
 }

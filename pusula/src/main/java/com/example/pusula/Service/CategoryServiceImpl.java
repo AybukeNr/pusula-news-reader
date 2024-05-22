@@ -34,9 +34,9 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
-    public void createCategory(CategoryDTO categoryDTO, int userID) {
+    public void createCategory(CategoryDTO categoryDTO) {
         Category category = new Category();
-        User mod = userDAO.findById(userID);
+        User mod = userDAO.findById(2);
         category.setName(categoryDTO.getName());
         category.setAdminUser(userDAO.findById(1));
         category.setModeratorUser(mod);

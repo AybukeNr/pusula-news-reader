@@ -46,8 +46,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public List<User> findYoneticiler() {
         TypedQuery<User> query = entityManager.createQuery(
-                "SELECT u FROM User u JOIN u.role r WHERE r.id = :roleName", User.class);
-        query.setParameter("roleName", "ROLE_MODERATOR");
+                "FROM User where Role.id=2", User.class);
         return query.getResultList();
     }
 

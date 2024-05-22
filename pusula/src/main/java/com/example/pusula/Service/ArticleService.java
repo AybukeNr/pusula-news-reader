@@ -1,7 +1,9 @@
 package com.example.pusula.Service;
 
 import com.example.pusula.DTO.ArticleDTO;
+import com.example.pusula.DTO.CategoryDTO;
 import com.example.pusula.Entity.Article;
+import com.example.pusula.Entity.Category;
 
 import java.util.List;
 
@@ -12,6 +14,7 @@ public interface ArticleService {
     List<ArticleDTO> getAllArticlesPrivate();
     ArticleDTO getPublicArticleById(int id);
     ArticleDTO getPrivateArticleById(int id);
+    List<ArticleDTO> getArticleByCategory(CategoryDTO category);
     List<ArticleDTO> getSports();
     List<ArticleDTO> getPolitics();
     List<ArticleDTO> getHealth();

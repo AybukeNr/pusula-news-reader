@@ -15,7 +15,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark fixed" data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.html"></a>
+            <a class="navbar-brand" th:href="@{/index}"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -24,29 +24,23 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
          <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="index.html"><img src="icons/favicon-32x32.png" width="30" height="20" class="d-inline-block align-text-top"> PUSULA</a>
+          <a class="nav-link" aria-current="page" th:href="@{/index}"><img src="icons/favicon-32x32.png" width="30" height="20" class="d-inline-block align-text-top"> PUSULA</a>
          </li>
-         <li class="nav-item">
-          <a class="nav-link" href="#">Politika</a>
-         </li>
-         <li class="nav-item">
-          <a class="nav-link" href="#">Teknoloji</a>
-         </li>         
-         <li class="nav-item">
-          <a class="nav-link" th:href="@{/sport}">Spor</a>
-         </li>
-         <li class="nav-item">
-          <a class="nav-link" href="#">Sağlık</a>
-         </li>
-         <li class="nav-item">
-          <a class="nav-link" href="/breakingnews.html">Son Dakika</a>
-         </li>
-         <li class="nav-item" >
-          <a class="nav-link" href="/login.html">Oturum Aç</a>
-         </li>
-         <li class="nav-item">
-          <a class="nav-link" th:href="@{register}">Üye Ol</a>
-         </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/politics}">Politika</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/technology}">Teknoloji</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/sport}">Spor</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/health}">Sağlık</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/author}">Yazarlarımızdan</a>
+                    </li>
         </ul>
             </div>
 
@@ -75,14 +69,14 @@
         <p class="placeholder-wave">
             <span class="placeholder col-12 placeholder-xs bg-dark"></span>
         </p>
-        <div class="card">
+        <div class="card"th:each="tempArticle : ${articles}">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                    content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                <a th:href="@{'/'+${tempArticle.id}}">
+                <h5 class="card-title" th:text="${tempArticle.title}"> </h5>
+                <p class="card-text" th:text="${tempArticle.body}"></p>
+                <p class="card-text" th:text="${tempArticle.publishDate}"><small class="text-body-secondary"></small></p>
             </div>
-            <img src="..." class="card-img-bottom" alt="...">
+            <img th:url="${tempArticle.image_url}" class="card-img-bottom" alt="...">
         </div>
 
         <div class="row mt-5">
@@ -125,6 +119,7 @@
             </div>
             <div class="col-md-8 mb-5" th:each="tempArticle : ${articles}" >
                 <div class="col">
+                    <a th:href="@{'/'+${tempArticle.id}}">
                     <div class="card text-bg-dark" th:style="'background-image: url(' + ${tempArticle.image_url} + ')'">
                         <img src="..." class="card-img" alt="..." >
                         <div class="card-img-overlay">

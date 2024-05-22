@@ -66,11 +66,11 @@
             ></a>
           </li>
           <li class="nav-item d-none d-sm-inline-block">
-            <a th:href="@{/admin}" class="nav-link">Home</a>
+            <a th:href="@{/admin/adminp}" class="nav-link">Home</a>
           </li>
 
           <li>
-            <a th:href="@{/index}" class="nav-link">Pusula</a>
+            <a th:href="@{/news}" class="nav-link">Pusula</a>
           </li>
         </ul>
 
@@ -90,7 +90,7 @@
       <!-- Main Sidebar Container -->
       <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a th:href="@{/index}" class="brand-link">
+        <a th:href="@{index}" class="brand-link">
           <img
             src="dist/img/AdminLTELogo.png"
             alt="AdminLTE Logo"
@@ -141,41 +141,22 @@
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
-                    Kullanıcılar
+                    Kategori
                     <i class="right fas fa-angle-left"></i>
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a th:href="@{yoneticiler}" class="nav-link">
+                    <a th:href="@{addcategory}" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Yöneticiler</p>
+                      <p>Kategori ekle</p>
                     </a>
                   </li>
-                  <li class="nav-item">
-                    <a th:href="@{addyonetici}" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Yönetici Ekle</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a th:href="@{kullanicilar}" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Üyeler</p>
-                    </a>
-                  </li>
+
                 </ul>
                
               </li>
-              <li class="nav-item ">
-               <a th:href="@{comments}" class="nav-link">
-                 <i class="nav-icon fas fa-tachometer-alt"></i>
-                 <p>
-                   Yorumlar
-                   <i class="right fas fa-angle-left"></i>
-                 </p>
-               </a>
-               </li>
+
 
 
             </ul>

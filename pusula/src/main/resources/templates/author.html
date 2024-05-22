@@ -36,7 +36,7 @@
           <a class="nav-link" href="#">Yazarlarımızdan</a>
          </li>
         <li class="nav-item"><a class="nav-link" th:href="@{login}">Oturum Aç</a></li>
-        <li class="nav-item"><a class="nav-link" th:href="@{register}>Üye Ol</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{register}">Üye Ol</a></li>
                 </ul>
 
 
@@ -71,57 +71,21 @@
             <div class="row">
                 <div class="col">
                     <div class="wrap">
-                        <a href="/newsexample.html">
-                            <div class="article"
-                                style="background-image: url(https://images.unsplash.com/photo-1446776877081-d282a0f896e2?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
-                                <div class="overlay"></div>
-                                <div class="wrap-cat">
-                                    <span class="cat" data-hover="Humans in Space">Humans in Space</span>
+                        <div class="wrap" th:each="tempArticle : ${articles}">
+                            <a th:href="@{'/private'+'/'+${tempArticle.id}}">
+                                <div class="article" th:style="'background-image: url(' + ${tempArticle.image_url} + ')'">
+
+                                    <div class="overlay"></div>
+                                    <div class="wrap-cat">
+                                        <span class="cat" th:attr="data-hover=${tempArticle.category}" th:text="${tempArticle.category}"></span>
+                                    </div>
+                                    <h1>
+                                        <span th:href="@{'/'+${tempArticle.id}}" th:text="${tempArticle.title}"/>
+                                    </h1>
                                 </div>
-                                <h1>
-                                    <span>Juno Solves 39-Year Old Mystery of Jupiter Lightning</span>
-                                </h1>
-                            </div>
-                        </a>
-                        <a href="/newsexample.html">
-                            <div class="article"
-                                style="background-image: url(https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
-                                <div class="overlay"></div>
-                                <div class="wrap-cat">
-                                    <span class="cat" data-hover="Moon to Mars">Moon to Mars</span>
-                                </div>
-                                <h1>
-                                    <span>Astronomers Spot a Distant and Lonely Neutron Star</span>
-                                </h1>
-                            </div>
-                        </a>
-                        <a href="/newsexample.html">
-                            <div class="article"
-                                style="background-image: url(https://images.unsplash.com/photo-1518364538800-6bae3c2ea0f2?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
-                                <div class="overlay"></div>
-                                <div class="wrap-cat">
-                                    <span class="cat" data-hover="Burst of Energy">Burst of Energy</span>
-                                </div>
-                                <h1>
-                                    <span>Solar flares and eruptions can impact radio communications, electric power
-                                        grids, and navigation signals and pose risks to spacecraft and
-                                        astronauts.</span>
-                                </h1>
-                            </div>
-                        </a>
-                        <a href="/newsexample.html">
-                            <div class="article"
-                                style="background-image: url(https://images.unsplash.com/photo-1518364538800-6bae3c2ea0f2?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
-                                <div class="overlay"></div>
-                                <div class="wrap-cat">
-                                    <span class="cat" data-hover="Flight">Flight</span>
-                                </div>
-                                <h1>
-                                    <span>Astronauts Safely in Orbit Following Launch to International Space
-                                        Station</span>
-                                </h1>
-                            </div>
-                        </a>
+                            </a>
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -130,19 +94,20 @@
         <div class="row mt-2 mb-5 mx-2">
             <div class="row">
                 <div class="col-md-6">
-                    <div class="wrap">
-                        <a href="/newsexample.html">
-                            <div class="article"
-                                style="background-image: url(https://images.unsplash.com/photo-1446776877081-d282a0f896e2?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
+                    <div class="wrap" th:each="tempArticle : ${articles}">
+                        <span th:href="@{'/'+ ${tempArticle.id}}" th:text="${tempArticle.title}"/>
+                            <div class="article" th:style="'background-image: url(' + ${tempArticle.image_url} + ')'">
+
                                 <div class="overlay"></div>
                                 <div class="wrap-cat">
-                                    <span class="cat" data-hover="Humans in Space">Humans in Space</span>
+                                    <span class="cat" th:attr="data-hover=${tempArticle.category}" th:text="${tempArticle.category}"></span>
                                 </div>
                                 <h1>
-                                    <span>Juno Solves 39-Year Old Mystery of Jupiter Lightning</span>
+                                    <span th:href="@{'/'+${tempArticle.id}}" th:text="${tempArticle.title}"/>
                                 </h1>
                             </div>
                         </a>
+
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -196,7 +161,7 @@
                                 </div>
                             </a>
                         </div>
-                    </div>            
+                    </div>
             </div>
         </div>
     </div>
